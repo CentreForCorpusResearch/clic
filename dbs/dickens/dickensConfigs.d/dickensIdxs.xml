@@ -274,8 +274,29 @@
 				<setting type="freqList">rec occ</setting>
 			</options>
 		</subConfig>
+
+		<subConfig type="index" id="6gram-idx">
+			<objectType>cheshire3.index.SimpleIndex</objectType>
+			<paths>
+				<object type="indexStore" ref="indexStore"/>
+			</paths>
+			<source>
+				<xpath ref="sentenceXPath"/>
+				<process>
+					<object type="extractor" ref="TaggedTermExtractor"/>
+					<object type="tokenizer" ref="RegexpSubTokenizer"/>
+					<object type="tokenMerger" ref="6GramTokenMerger"/>
+					<object type="normalizer" ref="CaseNormalizer"/>
+				</process>
+			</source>
+			<options>
+				<setting type="longSize">4</setting>
+				<setting type="vectors">1</setting>
+				<setting type="freqList">rec occ</setting>
+			</options>
+		</subConfig>
 		<!--end sentence idxs  -->
-		
+
 		<!-- Quote Index -->
 		<subConfig type="index" id="quote-idx">
 			<objectType>cheshire3.index.ProximityIndex</objectType>

@@ -22,6 +22,10 @@
 						<object type="tokenMerger" ref="5GramTokenMerger"/>
 						<object type="index" ref="5gram-idx"/>
 				 	</split>
+					<split>
+						<object type="tokenMerger" ref="6GramTokenMerger"/>
+						<object type="index" ref="6gram-idx"/>
+				 	</split>
 				</fork> 
 			</workflow>
 		</subConfig>

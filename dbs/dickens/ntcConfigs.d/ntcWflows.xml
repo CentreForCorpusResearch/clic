@@ -20,9 +20,11 @@
 						<object type="tokenMerger" ref="4GramTokenMerger"/>
 						<object type="index" ref="4gram-ntc-idx"/>
 					</split>
-					<split>-->
+					<split>
 						<object type="tokenMerger" ref="5GramTokenMerger"/>
-						<object type="index" ref="5gram-ntc-idx"/>
+						<object type="index" ref="5gram-ntc-idx"/> -->
+						<object type="tokenMerger" ref="6GramTokenMerger"/>
+						<object type="index" ref="6gram-ntc-idx"/>
 				<!--	</split>
 				</fork> -->
 			</workflow>
