@@ -78,6 +78,11 @@
 							<object type="normalizer" ref="CaseNormalizer"/>
 							<object type="index" ref="quote-5gram-idx"/>
 						</split> 
+					 	<split>
+							<object type="tokenMerger" ref="6GramTokenMerger"/>
+							<object type="normalizer" ref="CaseNormalizer"/>
+							<object type="index" ref="quote-6gram-idx"/>
+						</split> 
 					</fork>
 			</workflow>
 		</subConfig>
@@ -110,6 +115,11 @@
 							<object type="tokenMerger" ref="5GramTokenMerger"/>
 							<object type="normalizer" ref="CaseNormalizer"/>
 							<object type="index" ref="non-quote-5gram-idx"/>						
+						</split>				
+						<split>
+							<object type="tokenMerger" ref="6GramTokenMerger"/>
+							<object type="normalizer" ref="CaseNormalizer"/>
+							<object type="index" ref="non-quote-6gram-idx"/>						
 						</split>				
 					</fork>
 			</workflow>
@@ -156,6 +166,11 @@
 						<object type="tokenMerger" ref="5GramTokenMerger"/>
 						<object type="normalizer" ref="CaseNormalizer"/>
 						<object type="index" ref="longsus-5gram-idx"/>
+					</split>
+				 	<split>
+						<object type="tokenMerger" ref="6GramTokenMerger"/>
+						<object type="normalizer" ref="CaseNormalizer"/>
+						<object type="index" ref="longsus-6gram-idx"/>
 					</split>
 				</fork>
 					

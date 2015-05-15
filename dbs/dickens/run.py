@@ -22,7 +22,7 @@ try:
 except:
     raise ImportError("You have not specified the project-wide settings.\
 		       Please do so in settings.py.")
-    
+
 
 # Launch a Cheshire session
 session = Session()
@@ -48,7 +48,7 @@ if ('-austen' in sys.argv):
     print df
     austenRecStore.begin_storing(session)
     print 'recStore begun'
-    db.begin_indexing(session) 
+    db.begin_indexing(session)
     print 'indexing begun'
     i = 1
     for d in df :
@@ -64,8 +64,8 @@ if ('-austen' in sys.argv):
         except:
             print 'Error'
             traceback.print_exc(file=sys.stdout)
-        i = i+1           
-    austenRecStore.commit_storing(session)                
+        i = i+1
+    austenRecStore.commit_storing(session)
     db.commit_indexing(session)
 
 ### index 19C material
@@ -75,7 +75,7 @@ if ('-ntc' in sys.argv):
     data = DATA_DIRECTORY + 'ntc_novels'
     df.load(session, data)
     recStore.begin_storing(session)
-    db.begin_indexing(session) 
+    db.begin_indexing(session)
     errorCount= 0
     for i, d in enumerate(df, start=1):
         doc = ampPreP.process_document(session, d)
@@ -107,9 +107,10 @@ if ('-load' in sys.argv):
     geniaTxr = db.get_object(session, 'corpusTransformer')
     indexWF = db.get_object(session, 'indexWorkflow')
     data = DATA_DIRECTORY + 'dickens_novels'
+    session.logger.log_info(session, 'using {}'.format(data))
     df.load(session, data)
     recStore.begin_storing(session)
-    db.begin_indexing(session) 
+    db.begin_indexing(session)
     errorCount= 0
     for i, d in enumerate(df, start=1):
         doc = ampPreP.process_document(session, d)
@@ -138,7 +139,8 @@ if ('-load' in sys.argv):
 
 
 if ('-addIndex' in sys.argv):
-    idx = db.get_object(session, 'longsus-5gram-idx')
+    index_to_process = sys.argv[2]
+    idx = db.get_object(session, index_to_process)
     recStore = db.get_object(session, 'recordStore')
     idx.begin_indexing(session)
     session.logger.log_debug(session, recStore.id)
@@ -160,7 +162,7 @@ if ('-loadAll' in sys.argv):
     data = DATA_DIRECTORY
     df.load(session, data)
     recStore.begin_storing(session)
-    db.begin_indexing(session) 
+    db.begin_indexing(session)
 
     for d in df:
         doc = ampPreP.process_document(session, d)
@@ -292,4 +294,4 @@ if ('-adduser' in sys.argv):
     else:
         print 'OK: Username and passwords set for this user'
     #print user
-    sys.exit() 
+    sys.exit()
