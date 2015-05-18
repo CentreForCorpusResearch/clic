@@ -230,6 +230,7 @@
 				</process>
 			</source>
 			<options>
+                <setting type="longSize">4</setting>
 				<setting type="nProxInts">3</setting>
 				<setting type="proxVectors">1</setting>
 				<setting type="vectors">1</setting>
@@ -293,6 +294,7 @@
 				</process>
 			</source>
 			<options>
+                <setting type="longSize">4</setting>
 				<setting type="nProxInts">3</setting>
 				<setting type="proxVectors">1</setting>
 				<setting type="vectors">1</setting>
@@ -316,6 +318,7 @@
 				</process>
 			</source>
 			<options>
+                <setting type="longSize">4</setting>
 				<setting type="termIds">1</setting>
 				<setting type="freqList">rec occ</setting>
 			</options>
@@ -336,6 +339,7 @@
 				</process>
 			</source>
 			<options>
+                <setting type="longSize">4</setting>
 				<setting type="termIds">1</setting>
 				<setting type="freqList">rec occ</setting>
 			</options>
@@ -356,6 +360,7 @@
 				</process>
 			</source>
 			<options>
+                <setting type="longSize">4</setting>
 				<setting type="termIds">1</setting>
 				<setting type="freqList">rec occ</setting>
 			</options>
@@ -376,6 +381,7 @@
 				</process>
 			</source>
 			<options>
+                <setting type="longSize">4</setting>
 				<setting type="termIds">1</setting>
 				<setting type="freqList">rec occ</setting>
 			</options>
@@ -396,6 +402,7 @@
 				</process>
 			</source>
 			<options>
+                <setting type="longSize">4</setting>
 				<setting type="termIds">1</setting>
 				<setting type="freqList">rec occ</setting>
 			</options>
@@ -428,6 +435,7 @@
 				</process>
 			</source>
 			<options>
+                <setting type="longSize">4</setting>
 				<setting type="nProxInts">3</setting>
 				<setting type="proxVectors">1</setting>
 				<setting type="vectors">1</setting>
@@ -461,6 +469,7 @@
 				</process>
 			</source>
 			<options>
+                <setting type="longSize">4</setting>
 				<setting type="nProxInts">3</setting>
 				<setting type="proxVectors">1</setting>
 				<setting type="vectors">1</setting>
@@ -511,6 +520,7 @@
 				</process>
 			</source>
 			<options>
+                <setting type="longSize">4</setting>
 				<setting type="nProxInts">3</setting>
 				<setting type="proxVectors">1</setting>
 				<setting type="vectors">1</setting>
