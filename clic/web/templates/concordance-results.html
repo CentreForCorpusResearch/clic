@@ -23,6 +23,33 @@
 
   <h2 class="with-pills">Concordance Results</h2>
 
+  <div class="panel panel-default">
+      <div class="pattern">
+
+          <div class="pattern__row">
+              <div class="left">
+                  <input type="text" placeholder="L5" />
+                  <input type="text" placeholder="L4" />
+                  <input type="text" placeholder="L3" />
+                  <input type="text" placeholder="L2" />
+                  <input type="text" placeholder="L1" />
+              </div>
+
+              <input type="text" placeholder="fog" value="fog" class="concordance" />
+
+              <div class="right">
+                  <input type="text" placeholder="R1" />
+                  <input type="text" placeholder="R2" />
+                  <input type="text" placeholder="R3" />
+                  <input type="text" placeholder="R4" />
+                  <input type="text" placeholder="R5" />
+              </div>
+          </div>
+
+      </div>
+  </div>
+
+
   <div id="concordanceWrap">
       <p id="searchedFor"></p>
 
@@ -71,6 +98,8 @@
   <!-- datatables bootstrap js (css is above) see http://next.datatables.net/manual/styling/bootstrap -->
   <script src="/js/thirdparty/DataTables1.10.0-beta.2/media/js/dataTables.bootstrap.js"></script>
 
+  <script src='/js/thirdparty/jQuery.Autosize.Input/jquery.autosize.input.min.js'></script>
+
   <script src="/js/datatables.concordance.sort.js"></script>
   <script src="/js/clic.concordance.js"></script>
 
@@ -81,6 +110,8 @@
       $('#plotWrap').hide();
 
       $('body').concordanceResults();
+
+      $('.pattern input').autosizeInput();
 
       // SWITCH VIEWS
       $('#kwicView').click(function () {
@@ -94,7 +125,6 @@
           $(this).parent().addClass('active').siblings().removeClass('active');
           $('#concordanceWrap').hide();
           $('#plotWrap').show();
-
       });
   })
   ;

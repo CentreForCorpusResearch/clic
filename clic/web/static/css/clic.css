@@ -102,14 +102,70 @@ h2.with-pills {
 }
 
 
-
-
-
 /*
 End Datatable Common
 */
 
 
+/*
+KWIK Searcher
+*/
+
+.pattern {
+    text-align: center;
+    overflow: hidden;
+}
+
+.pattern__row {
+    position: relative;
+    width: auto;
+    margin: 0 auto;
+    display: inline-block;
+    text-align: center;
+}
+
+.pattern__row .left,
+.pattern__row .right {
+    position: absolute;
+    top: 0;
+    width: 10000px;
+}
+
+.pattern__row .left {
+    left: 0;
+    -webkit-transform: translateX(-100%);
+    transform: translateX(-100%);
+    text-align: right;
+}
+
+.pattern__row .right {
+    right: 0;
+    -webkit-transform: translateX(100%);
+    transform: translateX(100%);
+    text-align: left;
+}
+
+.pattern input {
+    width: 40px;
+    min-width: 40px;
+    max-width: 160px;
+    transition: width 0.25s;
+    text-align: center;
+    font-size: 1.5em;
+    border: 0;
+    outline: none;
+    background-color: transparent;
+}
+
+.pattern input.concordance {
+    width: 80px;
+    min-width: 80px;
+    font-weight: bold;
+}
+
+/*
+End KWIK Searcher
+*/
 
 
 /*

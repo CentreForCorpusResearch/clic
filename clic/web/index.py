@@ -78,6 +78,9 @@ def chapterView(number, book, word_index = None, search_term = None):
 
     return render_template("chapter-view.html", content=chapter, book_title=book_title)
 
+@app.route('/pattern/', methods=['GET'])
+def pattern():
+    return render_template("pattern.html")
 
 @app.errorhandler(404)
 def page_not_found(error):
