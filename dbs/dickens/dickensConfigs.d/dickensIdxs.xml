@@ -283,7 +283,8 @@
 			<source>
 				<xpath ref="sentenceXPath"/>
 				<process>
-					<object type="extractor" ref="TaggedTermExtractor"/>
+					<!-- <object type="extractor" ref="TaggedTermExtractor"/> -->
+					<object type="extractor" ref="SimpleExtractor"/>
 					<object type="tokenizer" ref="RegexpSubTokenizer"/>
 					<object type="tokenMerger" ref="6GramTokenMerger"/>
 					<object type="normalizer" ref="CaseNormalizer"/>
