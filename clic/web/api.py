@@ -48,6 +48,13 @@ def concordances():
     concordances = json.dumps(concordances_result)
     return concordances
 
+@api.route('/concordances_ajax/', methods=['GET'])
+def concordances_ajax():
+    args = request.args
+    concordances_result = fetchConcordanceAjax(args)
+    concordances = json.dumps(concordances_result)
+    return Response(concordances, mimetype='text/html')
+
 @cache.cache('keywords') ## no expiry
 def fetchKeywords(args):
     keyworder = Keywords()
@@ -66,8 +73,15 @@ def fetchClusters(args):
 def fetchConcordance(args):
     concordancer = Concordance()
     args = processArgs(args, 'concordances')
-    concordances = concordancer.create_concordance(args[0], args[1], args[2], args[3])
+    concordances = concordancer.create_concordance(args[0], args[1], args[2], args[3], args[4], args[5])
     return {'concordances' : concordances}
+
+@cache.cache('concordances_ajax')
+def fetchConcordanceAjax(args):
+    concordancer = Concordance()
+    args = processArgs(args, 'concordances')
+    concordances = concordancer.create_concordance_ajax(args[0], args[1], args[2], args[3], args[4], args[5])
+    return {'data' : concordances}
 
 def processArgs(args, method):
 
@@ -122,12 +136,16 @@ def processArgs(args, method):
         #wordWindow = str(args['wordWindow']) ## activate when in future wordWindow is in search options
         book_collection = args.getlist('testCollection')
         select_words = str(args['selectWords'])
+        page_number = int(args['pageNumber'])
+        page_size = int(args['pageSize'])
 
         methodArgs.insert(0, str(args['terms']))
         methodArgs.insert(1, testIdxName)
         #methodArgs.insert(2, wordWindow)
         methodArgs.insert(2, book_collection)
         methodArgs.insert(3, select_words)
+        methodArgs.insert(4, page_number)
+        methodArgs.insert(5, page_size)
 
 
     return methodArgs

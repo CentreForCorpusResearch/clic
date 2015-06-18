@@ -4,6 +4,7 @@ from clic.web.api import api
 
 app = Flask(__name__, static_url_path='')
 app.register_blueprint(api, url_prefix='/api')
+app.debug = True
 
 from clic.chapter_repository import ChapterRepository
 

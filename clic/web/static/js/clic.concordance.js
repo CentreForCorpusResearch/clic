@@ -3,7 +3,7 @@
     // Create the defaults once
     var pluginName = "concordanceResults",
         defaults = {
-            concordanceEndpointUrl : "/api/concordances/",
+            concordanceEndpointUrl : "/api/concordances_ajax/",
             bookCountsEndpointUrl : "/exampleJson/bookcounts.json"
         };
 
@@ -35,7 +35,7 @@
 
             var params = location.search;
             this.processParameters(params);
-            var concordanceUrl = this.options.concordanceEndpointUrl + params;
+            this.concordanceUrl = this.options.concordanceEndpointUrl + params;
 
             $.when(
                 $.ajax({
@@ -43,7 +43,7 @@
                     type: 'GET',
                     dataType: 'json'}),
                 $.ajax({
-                    url: concordanceUrl,
+                    url: this.concordanceUrl,
                     type: 'GET',
                     dataType: 'json'})
             ).then(
@@ -52,10 +52,10 @@
                     var coData = concordancesData[0];
 
                     var chapterData = that.processChapterMarkers(chData);
-                    var concordanceContent = that.processConcordanceData(coData);
-                    var concordancePlot = that.processConcordancePlot(coData, chapterData);
+                    //var concordanceContent = that.processConcordanceData(coData);
+                    //var concordancePlot = that.processConcordancePlot(coData, chapterData);
 
-                    that.renderConcordance(concordanceContent, concordancePlot);
+                    //that.renderConcordance(concordanceContent, concordancePlot);
                     that.setupDataTables();
                     Pace.stop();
                 },
@@ -242,67 +242,20 @@
         },
 
         setupDataTables: function() {
-            var that = this;
-
-            $('#dataTableConcordance').dataTable({
-                // counter on column0, recounts when filter see http://www.datatables.net/release-datatables/examples/api/counter_column.html
-                fnDrawCallback: function (oSettings) {
-                    var that = this;
-
-                    /* Need to redo the counters if filtered or sorted */
-                    if (oSettings.bSorted || oSettings.bFiltered) {
-                        this.$('td:first-child', {"filter": "applied"}).each(function (i) {
-                            that.fnUpdate(i + 1, this.parentNode, 0, false, false);
-                        });
-                    }
-                },
-                fnInfoCallback: function (oSettings, iStart, iEnd, iMax, iTotal, sPre) {
-                  if (iTotal > 0) {
-                      return iStart + " to " + iEnd + " of " + that.totalNumberOfHits + " entries";
-                  }
-
-                  return "0 entries";
-                },
-                bFilter: true,
-                bSort: true,
-                bPaginate: false,
-                aoColumnDefs: [
-                    { bSortable: false, aTargets: [ 0, 8 ] },
-                    { bSearchable: false, aTargets: [0, 4, 5, 6, 7, 8 ] },
-                    // custom sort Left using L1; right using R1
-                    { sType: "string-L1", aTargets: [ 1 ] },
-                    { sType: "string-R1", aTargets: [ 3 ] }
-                ],
-                // change phrase on search box (as now limited to just concordance)
-                oLanguage: {
-                    sSearch: "Filter concordance:"
-                },
-                // duplicate controls iflp
-                // plus add dataTools eg save
-                sDom: '<iTf>rt<if>',
-                oTableTools: {
-                    aButtons: [
-                        "csv",
-                        "print",
-                        {
-                            sExtends: "text",
-                            sButtonText: "Toggle metadata",
-                            fnClick: function (nButton, oConfig, oFlash) {
-                                // show hide columns
-                                /* Get the DataTables object again - this is not a recreation, just a get of the object */
-                                var oTable = $('#dataTableConcordance').dataTable();
-                                // until have time to find a more elegant solution
-                                var index;
-                                var colsList = [5, 6, 7, 8];
-                                for (index = 0; index < colsList.length; ++index) {
-                                    var bVis = oTable.fnSettings().aoColumns[colsList[index]].bVisible;
-                                    oTable.fnSetColumnVis(colsList[index], bVis ? false : true);
-                                }
-                            }
-                        }
-                    ],
-                    sSwfPath: "/js/thirdparty/DataTables1.10.0-beta.2/extensions/TableTools/swf/copy_csv_xls.swf"
-                }
+            alert(this.concordanceUrl);
+            $('#dataTableConcordance').DataTable({
+                "ajax": true,
+                "url": this.concordanceUrl,
+                "columns": [
+                    { "data": "left_text" },
+                    { "data": "node_text" },
+                    { "data": "right_text" },
+                    { "data": "book_title" },
+                    { "data": "chapter" },
+                    { "data": "para_chap" },
+                    { "data": "sent_chap" },
+                    { "data": "sent_book" }
+                ]
             });
         }
     };
