@@ -212,6 +212,27 @@
 		<!--  ngrams -->
 
 		
+		<subConfig type="index" id="2gram-idx">
+			<objectType>cheshire3.index.SimpleIndex</objectType>
+			<paths>
+				<object type="indexStore" ref="indexStore"/>
+			</paths>
+			<source>
+				<xpath>//s/txt</xpath>
+				<process>
+					<object type="extractor" ref="SimpleExtractor"/>
+					<object type="tokenizer" ref="RegexpSubTokenizer"/>
+					<object type="tokenMerger" ref="2GramTokenMerger"/>
+					<object type="normalizer" ref="CaseNormalizer"/>
+				</process>
+			</source>
+			<options>
+				<setting type="longSize">4</setting>
+				<setting type="vectors">1</setting>
+				<setting type="freqList">rec occ</setting>
+			</options>
+		</subConfig>
+
 		<subConfig type="index" id="3gram-idx">
 			<objectType>cheshire3.index.SimpleIndex</objectType>
 			<paths>
@@ -309,6 +330,36 @@
 				<setting type="freqList">rec occ</setting>
 			</options>
 		</subConfig> 
+
+		<subConfig type="index" id="quote-2gram-idx">
+			<objectType>cheshire3.index.SimpleIndex</objectType>
+			<paths>
+				<object type="indexStore" ref="indexStore"/>
+			</paths>
+			<source>
+				<xpath ref="quoteXPath"/>
+				<process>
+					<object type="extractor" ref="TaggedTermExtractor"/>
+					<object type="tokenizer" ref="SuppliedOffsetTokenizer"/>
+					<object type="tokenMerger" ref="2GramTokenMerger"/>
+					<object type="normalizer" ref="CaseNormalizer"/>
+				</process>
+			</source>
+			<source mode="any|all|=|exact|window">
+				<process>
+					<object type="extractor" ref="SimpleExtractor"/>
+					<object type="tokenizer" ref="RegexpSubTokenizer"/>
+					<object type="tokenMerger" ref="2GramTokenMerger"/>
+					<object type="normalizer" ref="CaseNormalizer"/>
+				</process>
+			</source>
+			<options>
+				<setting type="longSize">4</setting>
+				<setting type="vectors">1</setting>
+				<setting type="freqList">rec occ</setting>
+			</options>
+		</subConfig>
+
 		<subConfig type="index" id="quote-3gram-idx">
 			<objectType>cheshire3.index.SimpleIndex</objectType>
 			<paths>
@@ -434,6 +485,34 @@
 			</options>
 		</subConfig> 
 		
+		<subConfig type="index" id="non-quote-2gram-idx">
+			<objectType>cheshire3.index.SimpleIndex</objectType>
+			<paths>
+				<object type="indexStore" ref="indexStore"/>
+			</paths>
+			<source>
+				<xpath ref="nonQuoteXPath"/>
+				<process>
+					<object type="extractor" ref="TaggedTermExtractor"/>
+					<object type="tokenizer" ref="SuppliedOffsetTokenizer"/>
+					<object type="tokenMerger" ref="2GramTokenMerger"/>
+					<object type="normalizer" ref="CaseNormalizer"/>
+				</process>
+			</source>
+			<source mode="any|all|=|exact|window">
+				<process>
+					<object type="extractor" ref="SimpleExtractor"/>
+					<object type="tokenizer" ref="RegexpSubTokenizer"/>
+					<object type="tokenMerger" ref="2GramTokenMerger"/>
+					<object type="normalizer" ref="CaseNormalizer"/>
+				</process>
+			</source>
+			<options>
+				<setting type="longSize">4</setting>
+				<setting type="vectors">1</setting>
+				<setting type="freqList">rec occ</setting>
+			</options>
+		</subConfig>
 		
 		<subConfig type="index" id="non-quote-3gram-idx">
 			<objectType>cheshire3.index.SimpleIndex</objectType>
@@ -559,6 +638,35 @@
 			</options>
 		</subConfig> 
 		
+		<subConfig type="index" id="longsus-2gram-idx">
+			<objectType>cheshire3.index.SimpleIndex</objectType>
+			<paths>
+				<object type="indexStore" ref="indexStore"/>
+			</paths>
+			<source>
+				<xpath ref="longsusXPath"/>
+				<process>				
+					<object type="extractor" ref="SpanXPathTaggedTermExtractor"/>
+					<object type="tokenizer" ref="SuppliedOffsetTokenizer"/>
+					<object type="tokenMerger" ref="2GramTokenMerger"/>
+					<object type="normalizer" ref="CaseNormalizer"/>
+				</process>
+			</source>
+			<source mode="any|all|=|exact|window">
+				<process>
+					<object type="extractor" ref="SimpleExtractor"/>
+					<object type="tokenizer" ref="RegexpSubTokenizer"/>
+					<object type="tokenMerger" ref="2GramTokenMerger"/>
+					<object type="normalizer" ref="CaseNormalizer"/>
+				</process>
+			</source>
+			<options>
+				<setting type="longSize">4</setting>
+				<setting type="vectors">1</setting>
+				<setting type="freqList">rec occ</setting>
+			</options>
+		</subConfig>
+
 		<subConfig type="index" id="longsus-3gram-idx">
 			<objectType>cheshire3.index.SimpleIndex</objectType>
 			<paths>

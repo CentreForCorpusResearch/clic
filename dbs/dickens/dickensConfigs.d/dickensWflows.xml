@@ -11,6 +11,10 @@
 				<object type="normalizer" ref="CaseNormalizer"/>
 				<fork>
 					<split>
+						<object type="tokenMerger" ref="2GramTokenMerger"/>
+						<object type="index" ref="2gram-idx"/>
+					</split>
+					<split>
 						<object type="tokenMerger" ref="3GramTokenMerger"/>
 						<object type="index" ref="3gram-idx"/>
 					</split>
@@ -60,6 +64,11 @@
 							<object type="index" ref="quote-idx"/>
 						</split>
 						<split>
+							<object type="tokenMerger" ref="2GramTokenMerger"/>
+							<object type="normalizer" ref="CaseNormalizer"/>
+							<object type="index" ref="quote-2gram-idx"/>
+						</split>
+						<split>
 							<object type="tokenMerger" ref="3GramTokenMerger"/>
 							<object type="normalizer" ref="CaseNormalizer"/>
 							<object type="index" ref="quote-3gram-idx"/>
@@ -91,6 +100,11 @@
 							<object type="normalizer" ref="CaseNormalizer"/>
 							<object type="normalizer" ref="PossessiveNormalizer"/>
 							<object type="index" ref="non-quote-idx"/>	
+						</split>
+						<split>
+							<object type="tokenMerger" ref="2GramTokenMerger"/>
+							<object type="normalizer" ref="CaseNormalizer"/>
+							<object type="index" ref="non-quote-2gram-idx"/>						
 						</split>
 						<split>
 							<object type="tokenMerger" ref="3GramTokenMerger"/>
@@ -137,6 +151,11 @@
 						<object type="normalizer" ref="CaseNormalizer"/>
 						<object type="normalizer" ref="PossessiveNormalizer"/>
 						<object type="index" ref="longsus-idx"/>
+					</split>
+					<split>
+						<object type="tokenMerger" ref="2GramTokenMerger"/>
+						<object type="normalizer" ref="CaseNormalizer"/>
+						<object type="index" ref="longsus-2gram-idx"/>
 					</split>
 					<split>
 						<object type="tokenMerger" ref="3GramTokenMerger"/>
