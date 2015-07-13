@@ -75,6 +75,7 @@ def processArgs(args, method):
     methodArgs = []
 
     if method == 'clusters':
+        # ?testIdxGroup=2gram-idx&testCollection=dickens&testIdxMod=non-quote
         if not str(args["testIdxMod"]) == 'chapter':
             testMod = str(args["testIdxMod"])
             Group = str(args['testIdxGroup'])
