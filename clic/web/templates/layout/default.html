@@ -21,7 +21,8 @@
 <body>
 
 <div class="container">
-    <img class="pull-right" src="{{ url_for('static', filename='img/uonlogo.png') }}">
+    <img class="pull-right hidden-xs" src="{{ url_for('static', filename='img/uonlogo.png') }}" />
+    <img style="padding-top: 1em" class="pull-right hidden-xs" src="{{ url_for('static', filename='img/AHRC10th_horiz_small_RGB.png') }}" />
 
     <div class="header">
         <h1 class="uonHeaderh1">CLiC</h1>
@@ -46,6 +47,8 @@
                 <li{% if active_page == 'concordances' %} class="active"{% endif %}><a href="{{ url_for('concordances') }}">Concordance</a></li>
                 <li{% if active_page == 'keywords' %} class="active"{% endif %}><a href="{{ url_for('keywords') }}">Keywords</a></li>
                 <li{% if active_page == 'clusters' %} class="active"{% endif %}><a href="{{ url_for('clusters') }}">Clusters</a></li>
+                <li{% if active_page == 'subsets' %} class="active"{% endif %}><a href="{{ url_for('subsets') }}">Subsets</a></li>
+                <li{% if active_page == 'documentation' %} class="active"{% endif %}><a href="{{ url_for('documentation') }}">Documentation</a></li>
                 <li{% if active_page == 'about' %} class="active"{% endif %}><a href="{{ url_for('about') }}">About</a></li>
             </ul>
         </div>

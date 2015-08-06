@@ -48,21 +48,23 @@ def concordances():
     concordances = json.dumps(concordances_result)
     return concordances
 
-@cache.cache('keywords', expire=3600) ## expires after 3600 secs
+@cache.cache('keywords') ## no expiry
 def fetchKeywords(args):
     keyworder = Keywords()
     args = processArgs(args, 'keywords')
-    keywords = keyworder.list_keywords(args[0], args[1], args[2], args[3], args[4])
-    return {'keywords' : keywords}
+    keywordlist = keyworder.list_keywords(args[0], args[1], args[2], args[3], args[4])
+    return keywordlist
+    # return {'keywords' : keywords}
 
-@cache.cache('clusters', expire=3600)
+@cache.cache('clusters')
 def fetchClusters(args):
     cluster = Clusters()
     args = processArgs(args, 'clusters')
     clusterlist = cluster.list_clusters(args[0], args[1])
-    return {'clusters' : clusterlist}
+    return clusterlist
+    # return {'clusters' : clusterlist}
 
-@cache.cache('concordances', expire=3600)
+@cache.cache('concordances')
 def fetchConcordance(args):
     concordancer = Concordance()
     args = processArgs(args, 'concordances')
@@ -70,7 +72,6 @@ def fetchConcordance(args):
     return {'concordances' : concordances}
 
 def processArgs(args, method):
-
     methodArgs = []
 
     if method == 'clusters':
@@ -131,4 +132,3 @@ def processArgs(args, method):
 
 
     return methodArgs
-

@@ -42,7 +42,6 @@ class Clusters(object):
         query = self.qf.get_query(session,
                                        ' or '.join(clauses)
                                        )
-        print query
         # TODO is db.search different from query we used before?
         results = db.search(session, query)
 
@@ -61,8 +60,7 @@ class Clusters(object):
 
         cluster_list.sort(key=operator.itemgetter(2), reverse=True)
 
-        if len(cluster_list) <= 5000:
+        if len(cluster_list) <= 3001:
             return cluster_list
         else:
-            # TODO make this a round number
-            return cluster_list[0:4999]
+            return cluster_list[0:3000]
