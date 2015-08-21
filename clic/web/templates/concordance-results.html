@@ -23,7 +23,7 @@
 
   <h2 class="with-pills">Concordance Results</h2>
 
-  <div class="panel panel-default">
+  <div class="panel panel-default kwiksearch">
       <div class="pattern">
 
           <div class="pattern__row">
@@ -35,7 +35,7 @@
                   <input type="text" placeholder="L1" />
               </div>
 
-              <input type="text" placeholder="fog" value="fog" class="concordance" />
+              <input name="searchedFor" type="text" placeholder="" value="" class="concordance" />
 
               <div class="right">
                   <input type="text" placeholder="R1" />
@@ -102,6 +102,7 @@
 
   <script src="/js/datatables.concordance.sort.js"></script>
   <script src="/js/clic.concordance.js"></script>
+  <script src="/js/clic.kwiksearch.js"></script>
 
   <script>
   $(function () {
@@ -111,7 +112,7 @@
 
       $('body').concordanceResults();
 
-      $('.pattern input').autosizeInput();
+      $('.kwiksearch').kwikSearch();
 
       // SWITCH VIEWS
       $('#kwicView').click(function () {

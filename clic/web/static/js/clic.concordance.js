@@ -237,6 +237,10 @@
             });
 
             $("#searchedFor").html("Searched for <b>" + this.searchTerms + "</b> within <b>" + this.searchSpace + "</b>.");
+            $("input[name=searchedFor]")
+              .val(this.searchTerms)
+              .attr('placeholder', this.searchTerms)
+              .change();
 
             $('#concordanceWrap').show();
         },
