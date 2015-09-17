@@ -1,14 +1,13 @@
 <config type="database" id="db_dickens">
 	<objectType>cheshire3.database.SimpleDatabase</objectType>
 	<paths>
-		<path type="defaultPath">dbs/dickens</path>
+		<path type="defaultPath">/Users/johan/projects/clic/clic/dbs/dickens</path>
 		<path type="metadataPath">stores/metadata.bdb</path>
 		<path type="indexStoreList">indexStore</path>
 		<object type="recordStore" ref="recordStore"/>
 		<object type="tokenizer" ref="RegexpFindOffsetTokenizer"/>
 		<object type="geniaNormalizer" ref="TokenizingUnparsedGeniaNormalizer"/>
 	</paths>
-	
 	
 	<subConfigs>
 	   <path type="includeConfigs">dickensConfigs.d</path>
@@ -27,18 +26,29 @@
 		</paths>
 	</subConfig>
 	
-	
+	<subConfig type="logger" id="keywordLogger">
+	    <objectType>cheshire3.logger.SimpleLogger</objectType>
+	    <paths>
+	        <path type="filePath">logs/keywords.log</path>
+	    </paths>
+	</subConfig>
+
+	<subConfig type="logger" id="clusterLogger">
+	    <objectType>cheshire3.logger.SimpleLogger</objectType>
+	    <paths>
+	        <path type="filePath">logs/clusters.log</path>
+	    </paths>
+	</subConfig>
 	
 	<subConfig type="documentFactory" id="SimpleDocumentFactory">
 		<objectType>cheshire3.documentFactory.SimpleDocumentFactory</objectType>
 		<options>
-			<default type="data">/home/cheshire/cheshire3/dbs/dickens/data</default>
+			<default type="data">/Users/johan/projects/clic/clic/dbs/dickens/data</default>
 			<default type="format">dir</default>
 			<default type="tagName">div</default>
 			<default type="cache">0</default>				
 		</options>
 	</subConfig>
-
 
 <!-- SHARED STORES -->
 		
@@ -79,6 +89,8 @@
 				<path type="defaultPath">indexes</path>
 				<path type="tempPath">temp</path>
 				<path type="recordStoreHash">recordStore austenRecordStore contStore struStore</path>
+<!-- insert sortPath to avoid trouble with location of sort executive -->
+				<path type="sortPath">/usr/bin/sort</path>
 			</paths>
 		</subConfig>
 <!--END STORES -->
@@ -96,11 +108,11 @@
 		   </subConfig>
 
 	<subConfig type="normalizer" id="SubCorpusNormalizer">
-		<objectType>corpusNormalizer.CorpusNormalizer</objectType>
+		<objectType>clic.normalizer.CorpusNormalizer</objectType>
 	</subConfig>
 
 	<subConfig type="normalizer" id="NovelNormalizer">
-		<objectType>corpusNormalizer.NovelNormalizer</objectType>
+		<objectType>clic.normalizer.NovelNormalizer</objectType>
 	</subConfig>
 		
 	<subConfig type="transformer" id="geniaTransformer">
@@ -196,8 +208,8 @@
 		</paths>
 		<options>
 			<setting type="eidXpath">//s|//p|//qs|//qe|//sls|//sle|//sss|//sse</setting>
-			<setting type="recStartTag">qe</setting>
-			<setting type="recEndTag">qs</setting>
+<!-- 			<setting type="recStartTag">qe</setting> -->
+<!-- 			<setting type="recEndTag">qs</setting> -->
 		</options>
 	</subConfig>
 	
