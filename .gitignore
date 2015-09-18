@@ -6,6 +6,7 @@
 *.data_*
 indexes_OLD
 stores_OLD
+config.xml
 
 # Python compiled/optimized files
 *.py[co]
